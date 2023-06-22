@@ -4,8 +4,8 @@ import fetch from "node-fetch";
 export async function POST(request: NextRequest) {
   const { code } = await request.json();
 
-  const clientId = process.env.SOCIOS_CLIENT_ID as string;
   const clientSecret = process.env.SOCIOS_CLIENT_SECRET as string;
+  const clientId = process.env.NEXT_PUBLIC_SOCIOS_CLIENT_ID as string;
   const redirectUri = process.env.NEXT_PUBLIC_CALLBACK_URL as string;
   const grantType = "authorization_code";
 
