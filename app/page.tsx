@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Navbar from "./components/Navbar";
 import { useState, useEffect } from "react";
 
@@ -41,9 +40,10 @@ export default function Home() {
   const login = () => {
     const clientId = process.env.NEXT_PUBLIC_SOCIOS_CLIENT_ID;
     const responseType = "code";
-    const redirectUri = encodeURIComponent("http://localhost:3002/callback");
+    const redirectUri = encodeURIComponent(
+      process.env.NEXT_PUBLIC_CALLBACK_URL as string
+    );
     const partnerTag = "ethpass";
-
     const authUrl = `https://partner.chiliz.com/oauth2/authorize?response_type=${responseType}&client_id=${clientId}&redirect_uri=${redirectUri}&partner_tag=${partnerTag}`;
 
     // Redirect to the authUrl
@@ -94,7 +94,7 @@ export default function Home() {
           </>
         )}
 
-        <div className="flex w-full items-center justify-center">
+        <div className="mb-24 flex w-full items-center justify-center md:mb-0">
           <div className="relative select-none">
             <div className="absolute inset-0 rounded-xl bg-purple-500/40"></div>
             <img src="/hero.jpg" alt="hero" className="h-[600px] rounded-xl" />

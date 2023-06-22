@@ -11,9 +11,7 @@ export default function CallbackPage() {
   useEffect(() => {
     const exchangeCode = async () => {
       try {
-        // Check if user came from OAuth redirect
         if (code) {
-          // Post the code to your server to exchange for access token
           const response = await fetch("/api/exchange-code", {
             method: "POST",
             headers: {
@@ -25,11 +23,10 @@ export default function CallbackPage() {
           });
 
           if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`HTTP error! Status: ${response.status}`);
           }
 
           const data = await response.json();
-          console.log("@@@ data", data);
           localStorage.setItem("accessToken", data.access_token);
 
           router.push("/");
